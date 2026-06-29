@@ -8,6 +8,7 @@
     "rootDir": "./src",
     "ignoreDeprecations": "6.0",
     "removeComments": true,
+    "skipLibCheck": true,
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,

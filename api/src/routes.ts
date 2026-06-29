@@ -1,3 +1,4 @@
+import * as ai from 'controllers/ai';
 import * as authentication from 'controllers/authentication';
 import * as comments from 'controllers/comments';
 import * as issues from 'controllers/issues';
@@ -26,6 +27,7 @@ export const attachPrivateRoutes = (app: any): void => {
   app.post('/issues', issues.create);
   app.put('/issues/:issueId', issues.update);
   app.delete('/issues/:issueId', issues.remove);
+  app.post('/issues/:issueId/generate-subtasks', ai.generateSubtasks);
 
   app.get('/project', projects.getProjectWithUsersAndIssues);
   app.put('/project', projects.update);

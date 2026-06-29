@@ -30,8 +30,11 @@ const createApp = (): Express => {
 
   // Browser Origin headers never have a trailing slash or path, so the allowed
   // origins must not either. Configurable via CLIENT_ORIGIN (comma-separated).
+  // The default includes the local dev client (webpack-dev-server on :8080) so
+  // local development works without extra configuration.
   const allowedOrigins = (
-    process.env.CLIENT_ORIGIN || 'https://orbitclient-sepia.vercel.app'
+    process.env.CLIENT_ORIGIN ||
+    'http://localhost:8080,https://orbitclient-sepia.vercel.app'
   )
     .split(',')
     .map(origin => origin.trim().replace(/\/+$/, ''));

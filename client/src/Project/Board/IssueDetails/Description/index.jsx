@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { getTextContentsFromHtmlString } from 'shared/utils/browser';
 import { TextEditor, TextEditedContent, Button } from 'shared/components';
 
-import { Title, EmptyLabel, Actions } from './Styles';
+import SubtaskGenerator from './SubtaskGenerator';
+import { Header, Title, EmptyLabel, Actions } from './Styles';
 
 const propTypes = {
   issue: PropTypes.object.isRequired,
@@ -20,11 +21,20 @@ const ProjectBoardIssueDetailsDescription = ({ issue, updateIssue }) => {
     updateIssue({ description });
   };
 
+  const handleAddSubtasks = checklistHtml => {
+    const nextDescription = `${description || ''}${checklistHtml}`;
+    setDescription(nextDescription);
+    updateIssue({ description: nextDescription });
+  };
+
   const isDescriptionEmpty = getTextContentsFromHtmlString(description).trim().length === 0;
 
   return (
     <>
-      <Title>Description</Title>
+      <Header>
+        <Title>Description</Title>
+        {!isEditing && <SubtaskGenerator issueId={issue.id} onConfirm={handleAddSubtasks} />}
+      </Header>
       {isEditing ? (
         <>
           <TextEditor

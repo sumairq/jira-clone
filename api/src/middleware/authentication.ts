@@ -6,7 +6,6 @@ import { User } from 'entities';
 
 export const authenticateUser = catchErrors(async (req, _res, next) => {
   const token = getAuthTokenFromRequest(req);
-  console.log('The absense of bearer', token);
   if (!token) {
     throw new InvalidTokenError('Authentication token not found because token is not present.');
   }

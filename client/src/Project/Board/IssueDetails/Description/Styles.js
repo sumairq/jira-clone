@@ -2,8 +2,14 @@ import styled from 'styled-components';
 
 import { color, font, mixin } from 'shared/utils/styles';
 
-export const Title = styled.div`
+export const Header = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 20px 0 6px;
+`;
+
+export const Title = styled.div`
   ${font.size(15)}
   ${font.medium}
 `;
